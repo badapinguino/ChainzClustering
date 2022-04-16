@@ -8,6 +8,8 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException {
         // Cartella nella quale cercare le catene da clusterizzare
         String chainzFolder;
+        // TODO aggiungere la possibilità di regolare la differenza massima per raggruppare in cluster (es: 2 o 3) e
+        //  anche la possibilità di usare la distanza di hamming, levenshtein o numero di metodi
         if(args.length < 1){
             System.out.println("The program must be called with the following arguments:\n" +
                     "\t<ChainzFolder>\n" +
@@ -21,7 +23,7 @@ public class Main {
         //Creating a File object for directory
         File chainzDirectory = new File(chainzFolder);
         //List of all files and directories
-        File filesList[] = chainzDirectory.listFiles();
+        File[] filesList = chainzDirectory.listFiles();
         // List of chain files
         List<File> chainFiles = new ArrayList<>();
         System.out.println("List of files and directories in the specified directory:");
@@ -71,7 +73,7 @@ public class Main {
                     // TODO: calcola distanza tra chain esterna ed interna controllando quanti metodi sono diversi (max 2)
                 }
             }*/
-            System.out.println(clustersList.toString());
+            System.out.println(clustersList);
             // TODO vedere come gestire l'output dei vari cluster, se salvare su un file o creare più file per ogni cluster.
         }
     }
