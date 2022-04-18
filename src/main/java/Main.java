@@ -2,6 +2,9 @@ import util.Utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Main {
@@ -55,13 +58,23 @@ public class Main {
                         String interiorIterationChainString = Utils.readFromFile(interiorIterationChainFile);
                         int hammingDistance = Utils.hammingDistance(singleChainString, interiorIterationChainString);
                         int levenshteinDistance = Utils.levenshteinDistance(singleChainString, interiorIterationChainString);
+                        // calculate the distance between external and internal chain checking how many methods are different between them
+                        int methodsDistance = Utils.methodDistance(singleChainFile, interiorIterationChainFile);
+                        int hammingMethodsDistance = Utils.hammingMethodDistance(singleChainFile, interiorIterationChainFile);
+                        int levenshteinMethodsDistance = Utils.levenshteinMethodDistance(singleChainFile, interiorIterationChainFile);
                         System.out.println("File1: " + singleChainFile.getName() +
                                 "\nFile2: " + interiorIterationChainFile.getName());
                         System.out.println("Hamming distance: " + hammingDistance);
                         System.out.println("Levenshtein distance: " + levenshteinDistance);
-                        // TODO: calcola distanza tra chain esterna ed interna controllando quanti metodi sono diversi (max 2)
-                        if(hammingDistance >= 0 && hammingDistance <= 2) {
-                            clusterN.add(interiorIterationChainFile);
+                        System.out.println("Methods distance: " + methodsDistance);
+                        System.out.println("Hamming methods distance: " + methodsDistance);
+                        System.out.println("Levenshtein methods distance: " + levenshteinMethodsDistance);
+                        //if(methodsDistance >= 0 && methodsDistance <= 2) {
+                        //if(hammingMethodsDistance >= 0 && hammingMethodsDistance <= 2) {
+                        if(levenshteinMethodsDistance >= 0 && levenshteinMethodsDistance <= 2) {
+                            if(!Utils.contains(clustersList, interiorIterationChainFile)) {
+                                clusterN.add(interiorIterationChainFile);
+                            }
                         }
                     }
                 }
@@ -73,8 +86,21 @@ public class Main {
                     // TODO: calcola distanza tra chain esterna ed interna controllando quanti metodi sono diversi (max 2)
                 }
             }*/
-            System.out.println(clustersList);
-            // TODO vedere come gestire l'output dei vari cluster, se salvare su un file o creare più file per ogni cluster.
         }
+        System.out.println(clustersList);
+        DateFormat dateFormat = new SimpleDateFormat("ddMMyyyy-HHmmss");
+        Date date = new Date();
+        String dateToStr = dateFormat.format(date);
+        int i = 1;
+        for (List<File> cluster: clustersList) {
+            String fileName = "Cluster" + i + "_" + dateToStr + ".txt";
+            try {
+                Utils.writeListToFile(cluster, fileName);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            i++;
+        }
+        // TODO vedere come gestire l'output dei vari cluster, se salvare su un file o creare più file per ogni cluster.
     }
 }
