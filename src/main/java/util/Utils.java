@@ -184,4 +184,22 @@ public class Utils {
     private static int costOfSubstitution(char a, char b) {
         return a == b ? 0 : 1;
     }
+
+    public static void executeAllDifferenceTypes(File singleChainFile, File interiorIterationChainFile) throws FileNotFoundException {
+        String singleChainString = Utils.readFromFile(singleChainFile);
+        String interiorIterationChainString = Utils.readFromFile(interiorIterationChainFile);
+        int hammingDistance = Utils.hammingDistance(singleChainString, interiorIterationChainString);
+        int levenshteinDistance = Utils.levenshteinDistance(singleChainString, interiorIterationChainString);
+        // calculate the distance between external and internal chain checking how many methods are different between them
+        int methodsDistance = Utils.methodDistance(singleChainFile, interiorIterationChainFile);
+        int hammingMethodsDistance = Utils.hammingMethodDistance(singleChainFile, interiorIterationChainFile);
+        int levenshteinMethodsDistance = Utils.levenshteinMethodDistance(singleChainFile, interiorIterationChainFile);
+        System.out.println("File1: " + singleChainFile.getName() +
+                "\nFile2: " + interiorIterationChainFile.getName());
+        System.out.println("Hamming distance: " + hammingDistance);
+        System.out.println("Levenshtein distance: " + levenshteinDistance);
+        System.out.println("Methods distance: " + methodsDistance);
+        System.out.println("Hamming methods distance: " + hammingMethodsDistance);
+        System.out.println("Levenshtein methods distance: " + levenshteinMethodsDistance);
+    }
 }
