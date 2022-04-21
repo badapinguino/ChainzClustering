@@ -12,6 +12,8 @@ public class Main {
     private static int maxDifference;
     /** Is the method used to calculate the distance */
     private static String differenceComputationTypeSelected;
+    /** Maximum Levenshtein difference for each line (method) in a file (chain) to be considered equal to another one */
+    private static int maxDifferenceForEachLine;
 
     /** Used to log info and errors on file */
     private static Logger logger = Logger.getLogger(Main.class.getName());
@@ -22,6 +24,7 @@ public class Main {
      * <i>&lt;ChainzFolder&gt;</i> is the folder that contains all and only the chain files that you want to be clustered. 	 [Default: ./targetChainz] <br>
      * <i>&lt;MaxDifference&gt;</i> is the maximum difference that you want in your cluster (ex: 2 methods can differ, or a hamming distance of 40). 	 [Default: 2] <br>
      * <i>&lt;DifferenceComputationType&gt;</i> is the method that you want to use to calculate the distance. The supported method are: Hamming, Levenshtein, Methods, HammingMethods, LevenshteinMethods. 	 [Default: LevenshteinMethods].
+     * <i>&lt;MaxDifferenceForEachLine&gt;</i> is the maximum Levenshtein difference for each line (method) in a file (chain) to be considered equal to another one. This option will be used only with HammingMethods, LevenshteinMethods. 	 [Default: 0]
      *
      * @param args &lt;ChainzFolder&gt; &lt;MaxDifference&gt; &lt;DifferenceComputationType&gt;
      */
@@ -37,25 +40,34 @@ public class Main {
                     "(ex: 2 methods can differ, or a hamming distance of 40). \t [Default: 2]\n" +
                     "<DifferenceComputationType> is the method that you want to use to calculate the distance. " +
                     "The supported method are: Hamming, Levenshtein, Methods, HammingMethods, LevenshteinMethods. \t " +
-                    "[Default: LevenshteinMethods].");
+                    "[Default: LevenshteinMethods].\n" +
+                    "<MaxDifferenceForEachLine> is the maximum Levenshtein difference for each line (method) in a file (chain) " +
+                    "to be considered equal to another one. This option will be used only with " +
+                    "HammingMethods, LevenshteinMethods. \t [Default: 0]");
             logger.info("The program should be called with the following arguments:\n" +
                     "\t<ChainzFolder>\n" +
                     "\t<MaxDifference>\n" +
                     "\t<DifferenceComputationType>\n" +
+                    "\t<MaxDifferenceForEachLine>\n" +
                     "<ChainzFolder> is the folder that contains all and only the chain files " +
                     "that you want to be clustered. \t [Default: ./targetChainz]\n" +
                     "<MaxDifference> is the maximum difference that you want in your cluster " +
                     "(ex: 2 methods can differ, or a hamming distance of 40). \t [Default: 2]\n" +
                     "<DifferenceComputationType> is the method that you want to use to calculate the distance. " +
                     "The supported method are: Hamming, Levenshtein, Methods, HammingMethods, LevenshteinMethods. \t " +
-                    "[Default: LevenshteinMethods].");
+                    "[Default: LevenshteinMethods].\n" +
+                    "<MaxDifferenceForEachLine> is the maximum Levenshtein difference for each line (method) in a file (chain) " +
+                    "to be considered equal to another one. This option will be used only with " +
+                    "HammingMethods, LevenshteinMethods. \t [Default: 0]");
             chainzFolder = "./targetChainz";
             maxDifference = 2;
             differenceComputationTypeSelected = "LevenshteinMethods";
+            maxDifferenceForEachLine = 0;
         } else {
             chainzFolder = args[0];
             maxDifference = 2;
             differenceComputationTypeSelected = "LevenshteinMethods";
+            maxDifferenceForEachLine = 0;
             if(args.length > 1) {
                 if(Integer.parseInt(args[1])>0){
                     maxDifference = Integer.parseInt(args[1]);
@@ -67,12 +79,16 @@ public class Main {
                 }
                 if(args.length > 2) {
                     differenceComputationTypeSelected = args[2];
+                    if(args.length > 3) {
+                        maxDifferenceForEachLine = Integer.parseInt(args[3]);
+                    }
                 }
             }
         }
         logger.info("ChainzFolder: " + chainzFolder);
         logger.info("MaxDifference: " + maxDifference);
         logger.info("DifferenceComputationTypeSelected: " + differenceComputationTypeSelected);
+        logger.info("MaxDifferenceForEachLine: " + maxDifferenceForEachLine);
         // Creating a File object for directory
         File chainzDirectory = new File(chainzFolder);
         // List of all files and directories
@@ -148,7 +164,7 @@ public class Main {
                         } else if(differenceComputationTypeSelected.equalsIgnoreCase("HammingMethods")){
                             int hammingMethodsDistance = -2;
                             try {
-                                hammingMethodsDistance = Utils.hammingMethodDistance(singleChainFile, interiorIterationChainFile);
+                                hammingMethodsDistance = Utils.hammingMethodDistance(singleChainFile, interiorIterationChainFile, maxDifferenceForEachLine);
                             } catch (FileNotFoundException e) {
                                 e.printStackTrace();
                             }
@@ -160,7 +176,7 @@ public class Main {
                         } else if (differenceComputationTypeSelected.equalsIgnoreCase("LevenshteinMethods")) {
                             int levenshteinMethodsDistance = -2;
                             try {
-                                levenshteinMethodsDistance = Utils.levenshteinMethodDistance(singleChainFile, interiorIterationChainFile);
+                                levenshteinMethodsDistance = Utils.levenshteinMethodDistance(singleChainFile, interiorIterationChainFile, maxDifferenceForEachLine);
                             } catch (FileNotFoundException e) {
                                 e.printStackTrace();
                             }

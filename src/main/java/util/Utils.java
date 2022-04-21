@@ -145,10 +145,11 @@ public class Utils {
      * used in the Hamming distance.
      * @param file1 The first file containing the first chain of methods.
      * @param file2 The second file containing the second chain of methods.
+     * @param maxDifferenceForEachLine The maximum Levenshtein difference for each line (method) in a file (chain) to be considered equal to another one.
      * @return An integer representing the distance between the two chains.
      * @exception FileNotFoundException When a file doesn't exists
      */
-    public static int hammingMethodDistance(File file1, File file2) throws FileNotFoundException {
+    public static int hammingMethodDistance(File file1, File file2, int maxDifferenceForEachLine) throws FileNotFoundException {
 
 
         String[] file1MethodsArray = readFromFile(file1).split("\n");
@@ -159,8 +160,15 @@ public class Utils {
         } else {
             int count=0;
             for (int i = 0; i < file1MethodsArray.length; i++) {
-                if(!file1MethodsArray[i].equals(file2MethodsArray[i]))
-                    count++;
+                if(maxDifferenceForEachLine<=0) {
+                    if (!file1MethodsArray[i].equals(file2MethodsArray[i])) {
+                        count++;
+                    }
+                } else {
+                    if(levenshteinDistance(file1MethodsArray[i], file2MethodsArray[i])>maxDifferenceForEachLine){
+                        count++;
+                    }
+                }
             }
             return count;
         }
@@ -173,10 +181,11 @@ public class Utils {
      * This is the best way to calculate the different methods in two chains that have not the same length.
      * @param file1 The first file containing the first chain of methods.
      * @param file2 The second file containing the second chain of methods.
+     * @param maxDifferenceForEachLine The maximum Levenshtein difference for each line (method) in a file (chain) to be considered equal to another one.
      * @return An integer representing the distance between the two chains.
      * @exception FileNotFoundException When a file doesn't exists
      */
-    public static int levenshteinMethodDistance(File file1, File file2) throws FileNotFoundException {
+    public static int levenshteinMethodDistance(File file1, File file2, int maxDifferenceForEachLine) throws FileNotFoundException {
 
         String[] file1MethodsArray = readFromFile(file1).split("\n");
         String[] file2MethodsArray = readFromFile(file2).split("\n");
@@ -191,7 +200,19 @@ public class Utils {
                     dp[i][j] = i;
                 }
                 else {
-                    int costOfSubstitution = file1MethodsArray[i-1].equals(file2MethodsArray[j-1]) ? 0 : 1;
+                    int costOfSubstitution;
+                    if(maxDifferenceForEachLine<=0) {
+                        costOfSubstitution = file1MethodsArray[i - 1].equals(file2MethodsArray[j - 1]) ? 0 : 1;
+                    } else {
+                        String temp1 = file1MethodsArray[i-1];
+                        String temp2 = file2MethodsArray[j-1];
+                        int levenTemp = levenshteinDistance(temp1, temp2);
+                        if(levenshteinDistance(file1MethodsArray[i-1], file2MethodsArray[j-1]) > maxDifferenceForEachLine) {
+                            costOfSubstitution = 1;
+                        } else {
+                            costOfSubstitution = 0;
+                        }
+                    }
                     dp[i][j] = min(dp[i - 1][j - 1]
                                     + costOfSubstitution,
                                     //+ costOfSubstitution(str1.charAt(i - 1), str2.charAt(j - 1)),
@@ -263,17 +284,18 @@ public class Utils {
      * The purpose of this method is to show the difference between all the computation methods.
      * @param singleChainFile The first file to use for compute all the differences.
      * @param interiorIterationChainFile The second file to use for compute all the differences.
+     * @param maxDifferenceForEachLine The maximum Levenshtein difference for each line (method) in a file (chain) to be considered equal to another one.
      * @throws FileNotFoundException If a file doesn't exists.
      */
-    public static void executeAllDifferenceTypes(File singleChainFile, File interiorIterationChainFile) throws FileNotFoundException {
+    public static void executeAllDifferenceTypes(File singleChainFile, File interiorIterationChainFile, int maxDifferenceForEachLine) throws FileNotFoundException {
         String singleChainString = Utils.readFromFile(singleChainFile);
         String interiorIterationChainString = Utils.readFromFile(interiorIterationChainFile);
         int hammingDistance = Utils.hammingDistance(singleChainString, interiorIterationChainString);
         int levenshteinDistance = Utils.levenshteinDistance(singleChainString, interiorIterationChainString);
         // calculate the distance between external and internal chain checking how many methods are different between them
         int methodsDistance = Utils.methodDistance(singleChainFile, interiorIterationChainFile);
-        int hammingMethodsDistance = Utils.hammingMethodDistance(singleChainFile, interiorIterationChainFile);
-        int levenshteinMethodsDistance = Utils.levenshteinMethodDistance(singleChainFile, interiorIterationChainFile);
+        int hammingMethodsDistance = Utils.hammingMethodDistance(singleChainFile, interiorIterationChainFile, maxDifferenceForEachLine);
+        int levenshteinMethodsDistance = Utils.levenshteinMethodDistance(singleChainFile, interiorIterationChainFile, maxDifferenceForEachLine);
         logger.info("File1: " + singleChainFile.getName() +
                 "\nFile2: " + interiorIterationChainFile.getName());
         logger.info("Hamming distance: " + hammingDistance);
