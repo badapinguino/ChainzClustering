@@ -2,62 +2,89 @@ import util.Utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
+import org.apache.log4j.Logger;
 
 public class Main {
+    /** Folder that contains the chains to be clustered */
+    private static String chainzFolder;
+    /** Maximum difference that you want in every cluster */
     private static int maxDifference;
-    private static String differenceTypeSelected;
-    public static void main(String[] args) throws FileNotFoundException {
-        // Cartella nella quale cercare le catene da clusterizzare
-        String chainzFolder;
-        // TODO aggiungere la possibilità di regolare la differenza massima per raggruppare in cluster (es: 2 o 3) e
-        //  anche la possibilità di usare la distanza di hamming, levenshtein o numero di metodi
+    /** Is the method used to calculate the distance */
+    private static String differenceComputationTypeSelected;
+
+    /** Used to log info and errors on file */
+    private static Logger logger = Logger.getLogger(Main.class.getName());
+
+    /**
+     * The program is used to cluster all the files contained in a folder. Every file should contain a chain of Java methods. <br>
+     * It should be called with the following arguments: <br>
+     * <i>&lt;ChainzFolder&gt;</i> is the folder that contains all and only the chain files that you want to be clustered. 	 [Default: ./targetChainz] <br>
+     * <i>&lt;MaxDifference&gt;</i> is the maximum difference that you want in your cluster (ex: 2 methods can differ, or a hamming distance of 40). 	 [Default: 2] <br>
+     * <i>&lt;DifferenceComputationType&gt;</i> is the method that you want to use to calculate the distance. The supported method are: Hamming, Levenshtein, Methods, HammingMethods, LevenshteinMethods. 	 [Default: LevenshteinMethods].
+     *
+     * @param args &lt;ChainzFolder&gt; &lt;MaxDifference&gt; &lt;DifferenceComputationType&gt;
+     */
+    public static void main(String[] args) {
         if(args.length < 1){
-            // TODO: cambiare le stampe in log
             System.out.println("The program should be called with the following arguments:\n" +
                     "\t<ChainzFolder>\n" +
                     "\t<MaxDifference>\n" +
-                    "\t<DifferenceType>\n" +
+                    "\t<DifferenceComputationType>\n" +
                     "<ChainzFolder> is the folder that contains all and only the chain files " +
                     "that you want to be clustered. \t [Default: ./targetChainz]\n" +
                     "<MaxDifference> is the maximum difference that you want in your cluster " +
                     "(ex: 2 methods can differ, or a hamming distance of 40). \t [Default: 2]\n" +
-                    "<DifferenceType> is the method that you want to use to calculate the distance. " +
+                    "<DifferenceComputationType> is the method that you want to use to calculate the distance. " +
+                    "The supported method are: Hamming, Levenshtein, Methods, HammingMethods, LevenshteinMethods. \t " +
+                    "[Default: LevenshteinMethods].");
+            logger.info("The program should be called with the following arguments:\n" +
+                    "\t<ChainzFolder>\n" +
+                    "\t<MaxDifference>\n" +
+                    "\t<DifferenceComputationType>\n" +
+                    "<ChainzFolder> is the folder that contains all and only the chain files " +
+                    "that you want to be clustered. \t [Default: ./targetChainz]\n" +
+                    "<MaxDifference> is the maximum difference that you want in your cluster " +
+                    "(ex: 2 methods can differ, or a hamming distance of 40). \t [Default: 2]\n" +
+                    "<DifferenceComputationType> is the method that you want to use to calculate the distance. " +
                     "The supported method are: Hamming, Levenshtein, Methods, HammingMethods, LevenshteinMethods. \t " +
                     "[Default: LevenshteinMethods].");
             chainzFolder = "./targetChainz";
             maxDifference = 2;
-            differenceTypeSelected = "LevenshteinMethods";
+            differenceComputationTypeSelected = "LevenshteinMethods";
         } else {
             chainzFolder = args[0];
             maxDifference = 2;
-            differenceTypeSelected = "LevenshteinMethods";
+            differenceComputationTypeSelected = "LevenshteinMethods";
             if(args.length > 1) {
                 if(Integer.parseInt(args[1])>0){
                     maxDifference = Integer.parseInt(args[1]);
                 } else {
                     System.out.println("The maximum difference must be more than 0");
+                    logger.error("MaxDifference: " + maxDifference);
+                    logger.error("The maximum difference must be more than 0");
+                    return;
                 }
                 if(args.length > 2) {
-                    differenceTypeSelected = args[2];
+                    differenceComputationTypeSelected = args[2];
                 }
             }
         }
+        logger.info("ChainzFolder: " + chainzFolder);
+        logger.info("MaxDifference: " + maxDifference);
+        logger.info("DifferenceComputationTypeSelected: " + differenceComputationTypeSelected);
         // Creating a File object for directory
         File chainzDirectory = new File(chainzFolder);
         // List of all files and directories
         File[] filesList = chainzDirectory.listFiles();
         // List of chain files
         List<File> chainFiles = new ArrayList<>();
-        System.out.println("List of files and directories in the specified directory:");
+        logger.info("List of files and directories in the specified directory:");
         for(File file : filesList) {
-            System.out.println("File name: "+file.getName());
-            System.out.println("File path: "+file.getAbsolutePath());
-            System.out.println("Size: "+file.getTotalSpace());
-            System.out.println(" ");
+            logger.info("File name: "+file.getName());
+            logger.info("File path: "+file.getAbsolutePath());
+            logger.info("Size: "+file.getTotalSpace());
+            logger.info(" ");
             if(file.isFile()){
                 chainFiles.add(file);
             }
@@ -75,42 +102,68 @@ public class Main {
                 for (File interiorIterationChainFile : chainFiles) {
                     if (singleChainFile != interiorIterationChainFile) {
                         // execute and print all types of difference calculation.
-                        Utils.executeAllDifferenceTypes(singleChainFile, interiorIterationChainFile);
-
-                        if(differenceTypeSelected.equalsIgnoreCase("Hamming")){
-                            String singleChainString = Utils.readFromFile(singleChainFile);
-                            String interiorIterationChainString = Utils.readFromFile(interiorIterationChainFile);
+                        // Utils.executeAllDifferenceTypes(singleChainFile, interiorIterationChainFile);
+                        if(differenceComputationTypeSelected.equalsIgnoreCase("Hamming")){
+                            String singleChainString = null;
+                            String interiorIterationChainString = null;
+                            try {
+                                singleChainString = Utils.readFromFile(singleChainFile);
+                                interiorIterationChainString = Utils.readFromFile(interiorIterationChainFile);
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
                             int hammingDistance = Utils.hammingDistance(singleChainString, interiorIterationChainString);
                             if(hammingDistance >= 0 && hammingDistance <= maxDifference) {
                                 if(!Utils.contains(clustersList, interiorIterationChainFile)) {
                                     clusterN.add(interiorIterationChainFile);
                                 }
                             }
-                        }else if(differenceTypeSelected.equalsIgnoreCase("Levenshtein")){
-                            String singleChainString = Utils.readFromFile(singleChainFile);
-                            String interiorIterationChainString = Utils.readFromFile(interiorIterationChainFile);
+                        }else if(differenceComputationTypeSelected.equalsIgnoreCase("Levenshtein")){
+                            String singleChainString = null;
+                            String interiorIterationChainString = null;
+                            try {
+                                singleChainString = Utils.readFromFile(singleChainFile);
+                                interiorIterationChainString = Utils.readFromFile(interiorIterationChainFile);
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
                             int levenshteinDistance = Utils.levenshteinDistance(singleChainString, interiorIterationChainString);
                             if(levenshteinDistance >= 0 && levenshteinDistance <= maxDifference) {
                                 if(!Utils.contains(clustersList, interiorIterationChainFile)) {
                                     clusterN.add(interiorIterationChainFile);
                                 }
                             }
-                        } else if(differenceTypeSelected.equalsIgnoreCase("Methods")){
-                            int methodsDistance = Utils.methodDistance(singleChainFile, interiorIterationChainFile);
+                        } else if(differenceComputationTypeSelected.equalsIgnoreCase("Methods")){
+                            int methodsDistance = -2;
+                            try {
+                                methodsDistance = Utils.methodDistance(singleChainFile, interiorIterationChainFile);
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
                             if(methodsDistance >= 0 && methodsDistance <= maxDifference) {
                                 if(!Utils.contains(clustersList, interiorIterationChainFile)) {
                                     clusterN.add(interiorIterationChainFile);
                                 }
                             }
-                        } else if(differenceTypeSelected.equalsIgnoreCase("HammingMethods")){
-                            int hammingMethodsDistance = Utils.hammingMethodDistance(singleChainFile, interiorIterationChainFile);
+                        } else if(differenceComputationTypeSelected.equalsIgnoreCase("HammingMethods")){
+                            int hammingMethodsDistance = -2;
+                            try {
+                                hammingMethodsDistance = Utils.hammingMethodDistance(singleChainFile, interiorIterationChainFile);
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
                             if(hammingMethodsDistance >= 0 && hammingMethodsDistance <= maxDifference) {
                                 if(!Utils.contains(clustersList, interiorIterationChainFile)) {
                                     clusterN.add(interiorIterationChainFile);
                                 }
                             }
-                        } else if (differenceTypeSelected.equalsIgnoreCase("LevenshteinMethods")) {
-                            int levenshteinMethodsDistance = Utils.levenshteinMethodDistance(singleChainFile, interiorIterationChainFile);
+                        } else if (differenceComputationTypeSelected.equalsIgnoreCase("LevenshteinMethods")) {
+                            int levenshteinMethodsDistance = -2;
+                            try {
+                                levenshteinMethodsDistance = Utils.levenshteinMethodDistance(singleChainFile, interiorIterationChainFile);
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
                             if(levenshteinMethodsDistance >= 0 && levenshteinMethodsDistance <= maxDifference) {
                                 if(!Utils.contains(clustersList, interiorIterationChainFile)) {
                                     clusterN.add(interiorIterationChainFile);
@@ -119,6 +172,8 @@ public class Main {
                         } else {
                             System.out.println("You must provide a supported <DifferenceType> like: " +
                                     "Hamming, Levenshtein, Methods, HammingMethods, LevenshteinMethods!");
+                            logger.error("You must provide a supported <DifferenceType> like: " +
+                                    "Hamming, Levenshtein, Methods, HammingMethods, LevenshteinMethods!");
                             return;
                         }
                     }
@@ -126,22 +181,9 @@ public class Main {
                 clustersList.add(clusterN);
             }
         }
-        System.out.println(clustersList);
+        logger.info("Clusters list: " + clustersList);
         // Saving clusters to different files.
-        // TODO: create a method for this saving operation
-        DateFormat dateFormat = new SimpleDateFormat("ddMMyyyy-HHmmss");
-        Date date = new Date();
-        String dateToStr = dateFormat.format(date);
-        int i = 1;
-        for (List<File> cluster: clustersList) {
-            String fileName = "Cluster" + i + "_" + dateToStr + ".txt";
-            try {
-                Utils.writeListToFile(cluster, fileName);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            i++;
-        }
+        Utils.saveClustersOnFiles(clustersList);
 
     }
 }

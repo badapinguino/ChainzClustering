@@ -1,17 +1,26 @@
 package util;
 
+import org.apache.log4j.Logger;
+
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class Utils {
+    /** Used to log info and errors on file */
+    private static Logger logger = Logger.getLogger(Utils.class.getName());
 
+    /**
+     * Used to read a file and return the file content as a String.
+     * @param file The input file to read.
+     * @return A String containing the file content.
+     * @exception FileNotFoundException When the file doesn't exists
+     */
     public static String readFromFile(File file) throws FileNotFoundException {
         // Scanner used to read files
         Scanner sc;
-        //Instantiating the Scanner class
+        // Instantiating the Scanner class
         sc= new Scanner(file);
         String input;
         StringBuffer sb = new StringBuffer();
@@ -22,6 +31,12 @@ public class Utils {
         return sb.toString();
     }
 
+    /**
+     * Method used to calculate the Hamming distance between two strings.
+     * @param str1 The first string.
+     * @param str2 The second string.
+     * @return An integer that represents the Hamming distance between the two strings.
+     */
     public static int hammingDistance(String str1, String str2){
         int count=0;
         if(str1.length()!=str2.length()) {
@@ -36,6 +51,12 @@ public class Utils {
         }
     }
 
+    /**
+     * Checks if a file is contained into a List of List of Files.
+     * @param listOfFileLists The List of List of Files where the fileToSearch is searched.
+     * @param fileToSearch The file to search.
+     * @return True if the file is found, false otherwise.
+     */
     public static boolean contains(List<List<File>> listOfFileLists, File fileToSearch) {
         for (List<File> fileList: listOfFileLists) {
             if(fileList.contains(fileToSearch)){
@@ -45,6 +66,12 @@ public class Utils {
         return false;
     }
 
+    /**
+     * Method used to calculate the Levenshtein distance between two strings.
+     * @param str1 The first string.
+     * @param str2 The second string.
+     * @return An integer that represents the Levenshtein distance between the two strings.
+     */
     public static int levenshteinDistance(String str1, String str2) {
         int[][] dp = new int[str1.length() + 1][str2.length() + 1];
 
@@ -68,6 +95,13 @@ public class Utils {
         return dp[str1.length()][str2.length()];
     }
 
+    /** Method used to calculate the distance between two files:
+     *  The distance are maximum different lines between the two files, where every line is a method of a chain.
+     * @param file1 The first file containing the first chain of methods.
+     * @param file2 The second file containing the second chain of methods.
+     * @return An integer representing the distance between the two chains.
+     * @exception FileNotFoundException When a file doesn't exists
+     */
     public static int methodDistance(File file1, File file2) throws FileNotFoundException {
         List<String> file1MethodsList = new ArrayList<>();
         List<String> file2MethodsList = new ArrayList<>();
@@ -105,7 +139,43 @@ public class Utils {
         return max(diffFile1File2List.size(), diffFile2File1List.size());
     }
 
-    // TODO: levenshtein method distance, forse sarebbe la più corretta
+    /** This method uses a way to compute the Hamming distance not on every character of two strings but on every
+     * line of two files.
+     * In this way we can compute the distance between the methods of two different chains in a way that is the same
+     * used in the Hamming distance.
+     * @param file1 The first file containing the first chain of methods.
+     * @param file2 The second file containing the second chain of methods.
+     * @return An integer representing the distance between the two chains.
+     * @exception FileNotFoundException When a file doesn't exists
+     */
+    public static int hammingMethodDistance(File file1, File file2) throws FileNotFoundException {
+
+
+        String[] file1MethodsArray = readFromFile(file1).split("\n");
+        String[] file2MethodsArray = readFromFile(file2).split("\n");
+
+        if(file1MethodsArray.length != file2MethodsArray.length){
+            return -1;
+        } else {
+            int count=0;
+            for (int i = 0; i < file1MethodsArray.length; i++) {
+                if(!file1MethodsArray[i].equals(file2MethodsArray[i]))
+                    count++;
+            }
+            return count;
+        }
+    }
+
+    /** This method uses a way to compute the Levenshtein distance not on every character of two strings but on every
+     * line of two files.
+     * In this way we can compute the distance between the methods of two different chains in a way that is the same
+     * used in the Levenshtein distance.
+     * This is the best way to calculate the different methods in two chains that have not the same length.
+     * @param file1 The first file containing the first chain of methods.
+     * @param file2 The second file containing the second chain of methods.
+     * @return An integer representing the distance between the two chains.
+     * @exception FileNotFoundException When a file doesn't exists
+     */
     public static int levenshteinMethodDistance(File file1, File file2) throws FileNotFoundException {
 
         String[] file1MethodsArray = readFromFile(file1).split("\n");
@@ -134,25 +204,13 @@ public class Utils {
         return dp[file1MethodsArray.length][file2MethodsArray.length];
     }
 
-    // TODO: hamming method distance, potrebbe già andare bene dato che le chain sembrano avere una misura uguale
-    public static int hammingMethodDistance(File file1, File file2) throws FileNotFoundException {
-
-
-        String[] file1MethodsArray = readFromFile(file1).split("\n");
-        String[] file2MethodsArray = readFromFile(file2).split("\n");
-
-        if(file1MethodsArray.length != file2MethodsArray.length){
-            return -1;
-        } else {
-            int count=0;
-            for (int i = 0; i < file1MethodsArray.length; i++) {
-                if(!file1MethodsArray[i].equals(file2MethodsArray[i]))
-                count++;
-            }
-            return count;
-        }
-    }
-
+    /**
+     * Method used to write a File list on an output file located in the ./output folder.
+     * @param list The list of Files to be written.
+     * @param fileName The file name of the output file.
+     * @throws IOException In case of errors writing the file.
+     * @see IOException
+     */
     public static void writeListToFile(List<File> list, String fileName) throws IOException {
         // creates output directory if doesn't exists
         new File("./output/").mkdirs();
@@ -171,20 +229,42 @@ public class Utils {
         bw.close();
     }
 
+    /**
+     * Method used to calculate the minimum of several numbers.
+     * @param numbers Integer numbers.
+     * @return the minimum of all the numbers provided as parameter.
+     */
     private static int min(int... numbers) {
         return Arrays.stream(numbers)
                 .min().orElse(Integer.MAX_VALUE);
     }
 
+    /**
+     * Method used to calculate the maximum of several numbers.
+     * @param numbers Integer numbers.
+     * @return the maximum of all the numbers provided as parameter.
+     */
     private static int max(int... numbers) {
         return Arrays.stream(numbers)
                 .max().orElse(Integer.MIN_VALUE);
     }
 
+    /**
+     * Method used in the LevenshteinDistance to calculate the cost of a substitution of a character.
+     * @param a First Character
+     * @param b Second Character
+     * @return 0 if a = b, 1 if a != b.
+     */
     private static int costOfSubstitution(char a, char b) {
         return a == b ? 0 : 1;
     }
 
+    /** Method used to execute all Difference computation methods and log the result.
+     * The purpose of this method is to show the difference between all the computation methods.
+     * @param singleChainFile The first file to use for compute all the differences.
+     * @param interiorIterationChainFile The second file to use for compute all the differences.
+     * @throws FileNotFoundException If a file doesn't exists.
+     */
     public static void executeAllDifferenceTypes(File singleChainFile, File interiorIterationChainFile) throws FileNotFoundException {
         String singleChainString = Utils.readFromFile(singleChainFile);
         String interiorIterationChainString = Utils.readFromFile(interiorIterationChainFile);
@@ -194,12 +274,32 @@ public class Utils {
         int methodsDistance = Utils.methodDistance(singleChainFile, interiorIterationChainFile);
         int hammingMethodsDistance = Utils.hammingMethodDistance(singleChainFile, interiorIterationChainFile);
         int levenshteinMethodsDistance = Utils.levenshteinMethodDistance(singleChainFile, interiorIterationChainFile);
-        System.out.println("File1: " + singleChainFile.getName() +
+        logger.info("File1: " + singleChainFile.getName() +
                 "\nFile2: " + interiorIterationChainFile.getName());
-        System.out.println("Hamming distance: " + hammingDistance);
-        System.out.println("Levenshtein distance: " + levenshteinDistance);
-        System.out.println("Methods distance: " + methodsDistance);
-        System.out.println("Hamming methods distance: " + hammingMethodsDistance);
-        System.out.println("Levenshtein methods distance: " + levenshteinMethodsDistance);
+        logger.info("Hamming distance: " + hammingDistance);
+        logger.info("Levenshtein distance: " + levenshteinDistance);
+        logger.info("Methods distance: " + methodsDistance);
+        logger.info("Hamming methods distance: " + hammingMethodsDistance);
+        logger.info("Levenshtein methods distance: " + levenshteinMethodsDistance);
+    }
+
+    /**
+     * Method used to save the clusters list on different files.
+     * @param clustersList The List containting the Lists of Files (the clusters) to be saved.
+     */
+    public static void saveClustersOnFiles(List<List<File>> clustersList){
+        DateFormat dateFormat = new SimpleDateFormat("yyyyddMM-HHmmss");
+        Date date = new Date();
+        String dateToStr = dateFormat.format(date);
+        int i = 1;
+        for (List<File> cluster: clustersList) {
+            String fileName = "Cluster" + i + "_" + dateToStr + ".txt";
+            try {
+                Utils.writeListToFile(cluster, fileName);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            i++;
+        }
     }
 }
