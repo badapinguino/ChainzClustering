@@ -310,7 +310,7 @@ public class Utils {
      * @param clustersList The List containting the Lists of Files (the clusters) to be saved.
      */
     public static void saveClustersOnFiles(List<List<File>> clustersList){
-        DateFormat dateFormat = new SimpleDateFormat("yyyyddMM-HHmmss");
+        DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
         Date date = new Date();
         String dateToStr = dateFormat.format(date);
         int i = 1;
