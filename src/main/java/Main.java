@@ -34,6 +34,7 @@ public class Main {
                     "\t<ChainzFolder>\n" +
                     "\t<MaxDifference>\n" +
                     "\t<DifferenceComputationType>\n" +
+                    "\t<MaxDifferenceForEachLine>\n" +
                     "<ChainzFolder> is the folder that contains all and only the chain files " +
                     "that you want to be clustered. \t [Default: ./targetChainz]\n" +
                     "<MaxDifference> is the maximum difference that you want in your cluster " +
