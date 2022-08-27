@@ -1,0 +1,13 @@
+[
+ <org.apache.commons.collections4.map.ReferenceMap: void readObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections4.map.AbstractReferenceMap: void doReadObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections4.map.AbstractReferenceMap: java.lang.Object put(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections4.map.AbstractHashedMap: java.lang.Object put(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections4.map.AbstractHashedMap: boolean isEqualKey(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections4.map.Flat3Map: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections4.keyvalue.TiedMapEntry: boolean equals(java.lang.Object)>
+ <java.util.EnumMap: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections4.map.DefaultedMap: java.lang.Object get(java.lang.Object)>
+ <org.apache.commons.collections4.functors.InvokerTransformer: java.lang.Object transform(java.lang.Object)>
+ <java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>
+]
