@@ -1,0 +1,84 @@
+chain_ReferenceIdentityMap31-readObject-0b8ee023a0a2a936512729024521b4c5ca0c7660.txt
+	[
+ <org.apache.commons.collections.map.ReferenceIdentityMap: void readObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections.map.AbstractReferenceMap: void doReadObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections.map.AbstractReferenceMap: java.lang.Object put(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections.map.AbstractHashedMap: java.lang.Object put(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections.map.AbstractHashedMap: boolean isEqualKey(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections.CursorableLinkedList: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections.FastHashMap: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections.map.Flat3Map: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections.map.LazyMap: java.lang.Object get(java.lang.Object)>
+ <org.apache.commons.collections.functors.InvokerTransformer: java.lang.Object transform(java.lang.Object)>
+ <java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>
+]
+chain_ReferenceIdentityMap31-readObject-3b16bd15a190d3530e06a0866bd0f19730087093.txt
+	[
+ <org.apache.commons.collections.map.ReferenceIdentityMap: void readObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections.map.AbstractReferenceMap: void doReadObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections.map.AbstractReferenceMap: java.lang.Object put(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections.map.AbstractHashedMap: java.lang.Object put(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections.map.AbstractHashedMap: boolean isEqualKey(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections.CursorableLinkedList: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections.FastHashMap: boolean equals(java.lang.Object)>
+ <java.util.concurrent.ConcurrentHashMap: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections.map.LazyMap: java.lang.Object get(java.lang.Object)>
+ <org.apache.commons.collections.functors.InvokerTransformer: java.lang.Object transform(java.lang.Object)>
+ <java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>
+]
+chain_ReferenceIdentityMap31-readObject-deb4d0e1628eaa36d4f67c7c24e45285ee98da01.txt
+	[
+ <org.apache.commons.collections.map.ReferenceIdentityMap: void readObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections.map.AbstractReferenceMap: void doReadObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections.map.AbstractReferenceMap: java.lang.Object put(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections.map.AbstractHashedMap: java.lang.Object put(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections.map.AbstractHashedMap: boolean isEqualKey(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections.CursorableLinkedList: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections.FastHashMap: boolean equals(java.lang.Object)>
+ <java.util.EnumMap: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections.map.LazyMap: java.lang.Object get(java.lang.Object)>
+ <org.apache.commons.collections.functors.InvokerTransformer: java.lang.Object transform(java.lang.Object)>
+ <java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>
+]
+chain_ReferenceMap31-readObject-1e8977356299b014c4e0090fb1f3d1461d122f6b.txt
+	[
+ <org.apache.commons.collections.map.ReferenceMap: void readObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections.map.AbstractReferenceMap: void doReadObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections.map.AbstractReferenceMap: java.lang.Object put(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections.map.AbstractHashedMap: java.lang.Object put(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections.map.AbstractHashedMap: boolean isEqualKey(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections.CursorableLinkedList: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections.FastHashMap: boolean equals(java.lang.Object)>
+ <java.util.EnumMap: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections.map.LazyMap: java.lang.Object get(java.lang.Object)>
+ <org.apache.commons.collections.functors.InvokerTransformer: java.lang.Object transform(java.lang.Object)>
+ <java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>
+]
+chain_ReferenceMap31-readObject-4e8a6225f5b11fdfbc5bea211a37e4323229c43a.txt
+	[
+ <org.apache.commons.collections.map.ReferenceMap: void readObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections.map.AbstractReferenceMap: void doReadObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections.map.AbstractReferenceMap: java.lang.Object put(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections.map.AbstractHashedMap: java.lang.Object put(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections.map.AbstractHashedMap: boolean isEqualKey(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections.CursorableLinkedList: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections.FastHashMap: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections.map.Flat3Map: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections.map.LazyMap: java.lang.Object get(java.lang.Object)>
+ <org.apache.commons.collections.functors.InvokerTransformer: java.lang.Object transform(java.lang.Object)>
+ <java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>
+]
+chain_ReferenceMap31-readObject-9e2e045d977da52d230d69740558dba925afed83.txt
+	[
+ <org.apache.commons.collections.map.ReferenceMap: void readObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections.map.AbstractReferenceMap: void doReadObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections.map.AbstractReferenceMap: java.lang.Object put(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections.map.AbstractHashedMap: java.lang.Object put(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections.map.AbstractHashedMap: boolean isEqualKey(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections.CursorableLinkedList: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections.FastHashMap: boolean equals(java.lang.Object)>
+ <java.util.concurrent.ConcurrentHashMap: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections.map.LazyMap: java.lang.Object get(java.lang.Object)>
+ <org.apache.commons.collections.functors.InvokerTransformer: java.lang.Object transform(java.lang.Object)>
+ <java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>
+]

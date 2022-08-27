@@ -1,0 +1,28 @@
+chain_LRUMap31-readObject-8dc29009dfb7c41b1b32c8d8fccf12a2c1259fb2.txt
+	[
+ <org.apache.commons.collections.map.LRUMap: void readObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections.map.LRUMap: void doReadObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections.map.AbstractHashedMap: void doReadObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections.map.AbstractHashedMap: java.lang.Object put(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections.map.AbstractHashedMap: boolean isEqualKey(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections.CursorableLinkedList: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections.FastHashMap: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections.map.Flat3Map: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections.map.LazyMap: java.lang.Object get(java.lang.Object)>
+ <org.apache.commons.collections.functors.InvokerTransformer: java.lang.Object transform(java.lang.Object)>
+ <java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>
+]
+chain_LRUMap31-readObject-dd347b47096b8217380633e089d34f26e5b30cf5.txt
+	[
+ <org.apache.commons.collections.map.LRUMap: void readObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections.map.LRUMap: void doReadObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections.map.AbstractHashedMap: void doReadObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections.map.AbstractHashedMap: java.lang.Object put(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections.map.AbstractHashedMap: boolean isEqualKey(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections.CursorableLinkedList: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections.FastHashMap: boolean equals(java.lang.Object)>
+ <java.util.concurrent.ConcurrentHashMap: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections.map.LazyMap: java.lang.Object get(java.lang.Object)>
+ <org.apache.commons.collections.functors.InvokerTransformer: java.lang.Object transform(java.lang.Object)>
+ <java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>
+]

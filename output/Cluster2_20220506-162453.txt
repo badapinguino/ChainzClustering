@@ -1,0 +1,126 @@
+chain_LRUMap4-readObject-13598b6bcf15c7711944a24a8c412e6c2a12482a.txt
+	[
+ <org.apache.commons.collections4.map.LRUMap: void readObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections4.map.LRUMap: void doReadObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections4.map.AbstractHashedMap: void doReadObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections4.map.AbstractHashedMap: java.lang.Object put(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections4.map.AbstractHashedMap: boolean isEqualKey(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections4.map.Flat3Map: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections4.keyvalue.TiedMapEntry: boolean equals(java.lang.Object)>
+ <java.util.EnumMap: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections4.map.LazyMap: java.lang.Object get(java.lang.Object)>
+ <org.apache.commons.collections4.functors.InvokerTransformer: java.lang.Object transform(java.lang.Object)>
+ <java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>
+]
+chain_LRUMap4-readObject-170f97dab8eb7299a9b59c773ed708856efca487.txt
+	[
+ <org.apache.commons.collections4.map.LRUMap: void readObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections4.map.LRUMap: void doReadObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections4.map.AbstractHashedMap: void doReadObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections4.map.AbstractHashedMap: java.lang.Object put(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections4.map.AbstractHashedMap: boolean isEqualKey(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections4.map.Flat3Map: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections4.keyvalue.TiedMapEntry: boolean equals(java.lang.Object)>
+ <java.util.EnumMap: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections4.map.DefaultedMap: java.lang.Object get(java.lang.Object)>
+ <org.apache.commons.collections4.functors.InvokerTransformer: java.lang.Object transform(java.lang.Object)>
+ <java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>
+]
+chain_LRUMap4-readObject-4f5197e197629c428c36ad87926db203b949f12f.txt
+	[
+ <org.apache.commons.collections4.map.LRUMap: void readObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections4.map.LRUMap: void doReadObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections4.map.AbstractHashedMap: void doReadObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections4.map.AbstractHashedMap: java.lang.Object put(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections4.map.AbstractHashedMap: boolean isEqualKey(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections4.map.Flat3Map: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections4.keyvalue.TiedMapEntry: boolean equals(java.lang.Object)>
+ <java.util.Hashtable: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections4.map.LazyMap: java.lang.Object get(java.lang.Object)>
+ <org.apache.commons.collections4.functors.InvokerTransformer: java.lang.Object transform(java.lang.Object)>
+ <java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>
+]
+chain_LRUMap4-readObject-5cbb944e7592cec53c25c8a062c120dfc39dfd47.txt
+	[
+ <org.apache.commons.collections4.map.LRUMap: void readObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections4.map.LRUMap: void doReadObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections4.map.AbstractHashedMap: void doReadObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections4.map.AbstractHashedMap: java.lang.Object put(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections4.map.AbstractHashedMap: boolean isEqualKey(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections4.map.Flat3Map: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections4.keyvalue.TiedMapEntry: boolean equals(java.lang.Object)>
+ <java.util.Hashtable: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections4.map.DefaultedMap: java.lang.Object get(java.lang.Object)>
+ <org.apache.commons.collections4.functors.InvokerTransformer: java.lang.Object transform(java.lang.Object)>
+ <java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>
+]
+chain_LRUMap4-readObject-65e3ba88f381fd30f12c0262c6484bb1096dca67.txt
+	[
+ <org.apache.commons.collections4.map.LRUMap: void readObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections4.map.LRUMap: void doReadObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections4.map.AbstractHashedMap: void doReadObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections4.map.AbstractHashedMap: java.lang.Object put(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections4.map.AbstractHashedMap: boolean isEqualKey(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections4.map.Flat3Map: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections4.functors.ConstantTransformer: boolean equals(java.lang.Object)>
+ <java.util.EnumMap: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections4.map.LazyMap: java.lang.Object get(java.lang.Object)>
+ <org.apache.commons.collections4.functors.InvokerTransformer: java.lang.Object transform(java.lang.Object)>
+ <java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>
+]
+chain_LRUMap4-readObject-cb71cb74475e2947db5a61db3421a38dcfc48949.txt
+	[
+ <org.apache.commons.collections4.map.LRUMap: void readObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections4.map.LRUMap: void doReadObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections4.map.AbstractHashedMap: void doReadObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections4.map.AbstractHashedMap: java.lang.Object put(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections4.map.AbstractHashedMap: boolean isEqualKey(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections4.map.Flat3Map: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections4.keyvalue.TiedMapEntry: boolean equals(java.lang.Object)>
+ <java.util.concurrent.ConcurrentHashMap: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections4.map.DefaultedMap: java.lang.Object get(java.lang.Object)>
+ <org.apache.commons.collections4.functors.InvokerTransformer: java.lang.Object transform(java.lang.Object)>
+ <java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>
+]
+chain_LRUMap4-readObject-d2e33709c7456494e93f4d36ffa2523d0ecf3e04.txt
+	[
+ <org.apache.commons.collections4.map.LRUMap: void readObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections4.map.LRUMap: void doReadObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections4.map.AbstractHashedMap: void doReadObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections4.map.AbstractHashedMap: java.lang.Object put(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections4.map.AbstractHashedMap: boolean isEqualKey(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections4.map.Flat3Map: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections4.functors.ConstantTransformer: boolean equals(java.lang.Object)>
+ <java.util.EnumMap: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections4.map.DefaultedMap: java.lang.Object get(java.lang.Object)>
+ <org.apache.commons.collections4.functors.InvokerTransformer: java.lang.Object transform(java.lang.Object)>
+ <java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>
+]
+chain_LRUMap4-readObject-ec060da7d75ecaa26a59eee501c6d4399312e888.txt
+	[
+ <org.apache.commons.collections4.map.LRUMap: void readObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections4.map.LRUMap: void doReadObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections4.map.AbstractHashedMap: void doReadObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections4.map.AbstractHashedMap: java.lang.Object put(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections4.map.AbstractHashedMap: boolean isEqualKey(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections4.map.Flat3Map: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections4.functors.ConstantTransformer: boolean equals(java.lang.Object)>
+ <java.util.concurrent.ConcurrentHashMap: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections4.map.LazyMap: java.lang.Object get(java.lang.Object)>
+ <org.apache.commons.collections4.functors.InvokerTransformer: java.lang.Object transform(java.lang.Object)>
+ <java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>
+]
+chain_LRUMap4-readObject-f9003f15631d0f4ef013ccffdced9ad085341161.txt
+	[
+ <org.apache.commons.collections4.map.LRUMap: void readObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections4.map.LRUMap: void doReadObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections4.map.AbstractHashedMap: void doReadObject(java.io.ObjectInputStream)>
+ <org.apache.commons.collections4.map.AbstractHashedMap: java.lang.Object put(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections4.map.AbstractHashedMap: boolean isEqualKey(java.lang.Object,java.lang.Object)>
+ <org.apache.commons.collections4.map.Flat3Map: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections4.keyvalue.TiedMapEntry: boolean equals(java.lang.Object)>
+ <java.util.concurrent.ConcurrentHashMap: boolean equals(java.lang.Object)>
+ <org.apache.commons.collections4.map.LazyMap: java.lang.Object get(java.lang.Object)>
+ <org.apache.commons.collections4.functors.InvokerTransformer: java.lang.Object transform(java.lang.Object)>
+ <java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>
+]
